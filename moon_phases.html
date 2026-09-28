@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Moon Phases Game</title>
+
+    <!-- Norah Ballash Alhajri 441200195 -->
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(to bottom, #0b0c2a, #050618);
+    color: white;
+    text-align: center;
+}
+
+.container {
+    padding: 80px 20px;
+}
+
+.moon {
+    font-size: 80px;
+    margin: 30px 0;
+}
+
+.answers {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 15px 25px;
+    border-radius: 30px;
+    border: none;
+    background: rgba(255,255,255,0.1);
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+            text-decoration: none;
+
+}
+
+.btn:hover {
+    background: #00d4ff;
+    color: black;
+}
+
+.result {
+    margin-top: 20px;
+    font-size: 20px;
+    color: #00d4ff;
+}
+
+.next-btn {
+    margin-top: 30px;
+    padding: 12px 25px;
+    background: linear-gradient(45deg, #00d4ff, #4facfe);
+    color: black;
+    border-radius: 25px;
+    cursor: pointer;
+    display: none;
+}
+
+.btn-container{
+      margin-top: 30px;
+    padding: 12px 25px;
+     border-radius: 25px;
+    cursor: pointer;
+    margin-bottom: 30px;
+            
+
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>🌙 Moon Phases Game</h2>
+    <p>Choose the correct name for the moon!</p>
+
+    <div class="moon" id="moon">🌑</div>
+
+    <div class="answers" id="answers"></div>
+
+    <div class="result" id="result"></div>
+
+    <div class="next-btn" onclick="nextQuestion()">Next</div>
+</div>
+
+<script>
+const questions = [
+    {
+        moon: "🌑",
+        correct: "New Moon",
+        options: ["New Moon", "Full Moon", "Half Moon"]
+    },
+    {
+        moon: "🌕",
+        correct: "Full Moon",
+        options: ["Crescent", "Full Moon", "Half Moon"]
+    },
+    {
+        moon: "🌓",
+        correct: "Half Moon",
+        options: ["New Moon", "Half Moon", "Full Moon"]
+    },
+    {
+        moon: "🌒",
+        correct: "Crescent",
+        options: ["Crescent", "Full Moon", "Half Moon"]
+    }
+];
+
+let current = 0;
+
+function loadQuestion() {
+    const q = questions[current];
+    document.getElementById("moon").innerText = q.moon;
+
+    const answersDiv = document.getElementById("answers");
+    answersDiv.innerHTML = "";
+
+    q.options.forEach(option => {
+        const btn = document.createElement("button");
+        btn.innerText = option;
+        btn.className = "btn";
+
+        btn.onclick = () => checkAnswer(option);
+        answersDiv.appendChild(btn);
+    });
+
+    document.getElementById("result").innerText = "";
+    document.querySelector(".next-btn").style.display = "none";
+}
+
+function checkAnswer(selected) {
+    const correct = questions[current].correct;
+
+    if (selected === correct) {
+        document.getElementById("result").innerText = "✅ Correct!";
+    } else {
+        document.getElementById("result").innerText = "❌ Wrong!";
+    }
+
+    document.querySelector(".next-btn").style.display = "inline-block";
+}
+
+function nextQuestion() {
+    current++;
+    if (current < questions.length) {
+        loadQuestion();
+    } else {
+        document.querySelector(".container").innerHTML = 
+        "<h2>🎉 Great Job!</h2><p>You finished the game!</p>";
+    }
+}
+
+loadQuestion();
+</script>
+
+<div class="btn-container">
+    <a href="HomePage.html" class="btn">Back to HomePage🚀</a>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Solar System</title>
+
+    <!-- Sadeem alqahtani 441200202 -->
+
+<style>
+body {
+  margin: 0;
+  overflow: hidden;
+  background: radial-gradient(circle, #020111, #000000);
+  color: white;
+  font-family: 'Segoe UI', sans-serif;
+  text-align: center;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 15px 0;
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(10px);
+  z-index: 1000; /* Keep navbar on top */
+}
+
+.navbar a {
+  color: white;
+  margin: 0 20px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.navbar a:hover {
+  color: #00d4ff;
+}
+
+/* Stars */
+body::before {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: url('https://www.transparenttextures.com/patterns/stardust.png');
+  animation: stars 60s linear infinite;
+  z-index: -1;
+}
+
+@keyframes stars {
+  from { transform: translate(0,0); }
+  to { transform: translate(-500px, -500px); }
+}
+
+/* Title */
+h1 {
+  position: absolute;
+  width: 100%;
+  top: 60px;
+  font-size: 40px;
+  color: #00d4ff;
+  text-shadow: 0 0 10px rgba(0,212,255,0.7);
+}
+
+/* Container */
+.solar-system {
+  position: relative;
+  width: 600px;
+  height: 600px;
+  margin: auto;
+  top: 150px;
+}
+
+/* Sun */
+.sun {
+  position: absolute;
+  width: 90px;
+  height: 90px;
+  background: radial-gradient(circle, yellow, orange);
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 50px yellow;
+}
+
+/* Orbits */
+.orbit {
+  position: absolute;
+  border: 1px dashed rgba(255,255,255,0.15);
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none; /* FIX: Clicks pass through the orbit lines */
+}
+
+/* Rotation */
+.planet-orbit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform-origin: center;
+  pointer-events: none; /* FIX: Clicks pass through the invisible orbit container */
+}
+
+/* Planet */
+.planet {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  cursor: pointer;
+  text-align: center;
+  pointer-events: auto; /* FIX: Re-enable clicking on the actual planet */
+  z-index: 10;
+}
+
+/* Image */
+.planet img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Names */
+.planet span {
+  display: block;
+  font-size: 10px;
+  margin-top: 4px;
+  color: #ccc;
+}
+
+/* Positions (Centered relative to orbits) */
+.mercury { left: 75px; transform: translate(-50%, -50%); }
+.venus   { left: 100px; transform: translate(-50%, -50%); }
+.earth   { left: 130px; transform: translate(-50%, -50%); }
+.mars    { left: 160px; transform: translate(-50%, -50%); }
+.jupiter { left: 190px; transform: translate(-50%, -50%); }
+.saturn  { left: 220px; transform: translate(-50%, -50%); }
+.uranus  { left: 250px; transform: translate(-50%, -50%); }
+.neptune { left: 280px; transform: translate(-50%, -50%); }
+
+/* Orbits size */
+.orbit1 { width: 150px; height: 150px; }
+.orbit2 { width: 200px; height: 200px; }
+.orbit3 { width: 260px; height: 260px; }
+.orbit4 { width: 320px; height: 320px; }
+.orbit5 { width: 380px; height: 380px; }
+.orbit6 { width: 440px; height: 440px; }
+.orbit7 { width: 500px; height: 500px; }
+.orbit8 { width: 560px; height: 560px; }
+
+/* Animation */
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.m1 { animation: rotate 5s linear infinite; }
+.m2 { animation: rotate 8s linear infinite; }
+.m3 { animation: rotate 12s linear infinite; }
+.m4 { animation: rotate 16s linear infinite; }
+.m5 { animation: rotate 20s linear infinite; }
+.m6 { animation: rotate 24s linear infinite; }
+.m7 { animation: rotate 28s linear infinite; }
+.m8 { animation: rotate 32s linear infinite; }
+
+.planet:hover {
+  transform: scale(1.3) translate(-40%, -40%); /* Slightly adjusted for the transform center */
+}
+
+/* ===== BACK BUTTON ===== */
+.home-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 70%;
+  transform: translateX(-50%);
+  padding: 12px 25px;
+  border-radius: 25px;
+  background: linear-gradient(45deg, #00d4ff, #4facfe);
+  color: black;
+  font-weight: bold;
+  text-decoration: none;
+  transition: 0.3s;
+  z-index: 1000;
+}
+</style>
+</head>
+
+<body>
+
+<div class="navbar">
+  <a href="HomePage.html">Home</a>
+  <a href="Planets.html">Planets</a>
+  <a href="Games.html">Games</a>
+  <a href="AboutUsPage.html">About Us</a>
+</div>
+
+<h1> Explore the Solar System </h1>
+
+<div class="solar-system">
+    <div class="sun"></div>
+
+    <div class="orbit orbit1"></div>
+    <div class="orbit orbit2"></div>
+    <div class="orbit orbit3"></div>
+    <div class="orbit orbit4"></div>
+    <div class="orbit orbit5"></div>
+    <div class="orbit orbit6"></div>
+    <div class="orbit orbit7"></div>
+    <div class="orbit orbit8"></div>
+
+    <div class="planet-orbit m1">
+      <div class="planet mercury" onclick="goTo('mercury.html')">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Mercury_in_true_color.jpg"><span>Mercury</span>
+      </div>
+    </div>
+
+    <div class="planet-orbit m2">
+      <div class="planet venus" onclick="goTo('venus.html')">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e5/Venus-real_color.jpg"><span>Venus</span>
+      </div>
+    </div>
+
+    <div class="planet-orbit m3">
+      <div class="planet earth" onclick="goTo('earth.html')">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/9/97/The_Earth_seen_from_Apollo_17.jpg"><span>Earth</span>
+      </div>
+    </div>
+
+    <div class="planet-orbit m4">
+      <div class="planet mars" onclick="goTo('mars.html')">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/02/OSIRIS_Mars_true_color.jpg"><span>Mars</span>
+      </div>
+    </div>
+
+    <div class="planet-orbit m5">
+      <div class="planet jupiter" onclick="goTo('jupiter.html')">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e2/Jupiter.jpg"><span>Jupiter</span>
+      </div>
+    </div>
+
+    <div class="planet-orbit m6">
+      <div class="planet saturn" onclick="goTo('saturn.html')">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Saturn_during_Equinox.jpg"><span>Saturn</span>
+      </div>
+    </div>
+
+    <div class="planet-orbit m7">
+      <div class="planet uranus" onclick="goTo('uranus.html')">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3d/Uranus2.jpg"><span>Uranus</span>
+      </div>
+    </div>
+
+    <div class="planet-orbit m8">
+      <div class="planet neptune" onclick="goTo('neptune.html')">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/56/Neptune_Full.jpg"><span>Neptune</span>
+      </div>
+    </div>
+</div>
+
+<a href="HomePage.html" class="home-btn">🏠 Back to Home</a>
+
+<script>
+function goTo(page) {
+  console.log("Navigating to: " + page);
+  window.location.href = page;
+}
+</script>
+
+</body>
+</html>

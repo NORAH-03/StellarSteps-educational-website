@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Match Planets</title>
+
+    <!-- Layan Alahmari 441200239 -->
+
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(to bottom, #0b0c2a, #050618);
+    color: white;
+    text-align: center;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+h1 {
+    margin-top: 40px;
+    font-size: 36px;
+    color: #00d4ff;
+    text-shadow: 0 0 15px rgba(0, 212, 255, 0.5);
+}
+
+/* Icons/Buttons */
+.reset {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    font-size: 24px;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.3s;
+    z-index: 100;
+}
+
+.reset:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(-45deg);
+}
+
+.back {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: linear-gradient(45deg, #00d4ff, #4facfe);
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    color: black;
+    transition: 0.3s;
+    z-index: 100;
+}
+
+.back:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.4);
+}
+
+/* Game Container */
+.container {
+    display: flex;
+    justify-content: center;
+    gap: 120px;
+    margin-top: 50px;
+    position: relative;
+    z-index: 10;
+}
+
+.planets, .facts {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.planet, .fact {
+    padding: 15px 25px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: 0.3s;
+    user-select: none;
+}
+
+.planet {
+    cursor: crosshair;
+    font-weight: bold;
+    width: 120px;
+}
+
+.planet:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: #00d4ff;
+}
+
+.fact {
+    width: 280px;
+    font-size: 14px;
+    color: #ccc;
+    text-align: left;
+}
+
+/* Feedback States */
+.correct-box {
+    border: 2px solid #2ecc71 !important;
+    background: rgba(46, 204, 113, 0.1) !important;
+    color: white !important;
+}
+
+.wrong-box {
+    border: 2px solid #e74c3c !important;
+    background: rgba(231, 76, 60, 0.1) !important;
+}
+
+/* Connection Lines */
+svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 5;
+}
+</style>
+
+</head>
+
+<body>
+
+<button class="reset" onclick="restartGame()" title="Restart Game">🔄</button> 
+<button class="back" onclick="goBack()">⬅ Go Back</button>
+
+<h1>🪐 Match the Planet!</h1>
+
+<svg id="svg"></svg>
+
+<div class="container">
+
+    <div class="planets">
+        <div class="planet" data-planet="mercury">Mercury</div>
+        <div class="planet" data-planet="venus">Venus</div>
+        <div class="planet" data-planet="earth">Earth</div>
+        <div class="planet" data-planet="mars">Mars</div>
+        <div class="planet" data-planet="jupiter">Jupiter</div>
+        <div class="planet" data-planet="saturn">Saturn</div>
+        <div class="planet" data-planet="uranus">Uranus</div>
+        <div class="planet" data-planet="neptune">Neptune</div>
+    </div>
+
+    <div class="facts" id="facts">
+        <div class="fact" data-planet="mars">🚀 Known as the Red Planet</div>
+        <div class="fact" data-planet="earth">🌊 Only planet with liquid water</div>
+        <div class="fact" data-planet="saturn">💍 Famous for its beautiful rings!</div>
+        <div class="fact" data-planet="venus">🔥 Hottest planet</div>
+        <div class="fact" data-planet="neptune">💨 Strongest winds in the solar system!</div>
+        <div class="fact" data-planet="mercury">☀️ Closest to the Sun</div>
+        <div class="fact" data-planet="uranus">🌀 Rotates on its side!</div>
+        <div class="fact" data-planet="jupiter">🌪️ Has a giant storm (Great Red Spot)</div>
+    </div>
+
+</div>
+
+<script>
+let startElement = null;
+let tempLine = null;
+let linesMap = {};
+const svg = document.getElementById("svg");
+
+// Function to handle line starting
+document.querySelectorAll(".planet").forEach(p => {
+    p.addEventListener("mousedown", (e) => {
+        // If already matched correctly, don't allow new line
+        if(linesMap[p.dataset.planet] && linesMap[p.dataset.planet].getAttribute("stroke") === "#2ecc71") return;
+
+        // If line exists but was wrong, remove it to try again
+        if(linesMap[p.dataset.planet]) {
+            linesMap[p.dataset.planet].remove();
+            delete linesMap[p.dataset.planet];
+        }
+
+        startElement = p;
+        const rect = p.getBoundingClientRect();
+
+        tempLine = document.createElementNS("http://www.w3.org/2000/svg","line");
+        tempLine.setAttribute("x1", rect.right);
+        tempLine.setAttribute("y1", rect.top + rect.height/2 + window.scrollY);
+        tempLine.setAttribute("x2", rect.right);
+        tempLine.setAttribute("y2", rect.top + rect.height/2 + window.scrollY);
+        tempLine.setAttribute("stroke","#00d4ff");
+        tempLine.setAttribute("stroke-width","3");
+        tempLine.setAttribute("stroke-dasharray", "5,5"); // Dashed while dragging
+        
+        svg.appendChild(tempLine);
+    });
+});
+
+document.addEventListener("mousemove", (e) => {
+    if(tempLine){
+        tempLine.setAttribute("x2", e.clientX);
+        tempLine.setAttribute("y2", e.clientY + window.scrollY);
+    }
+});
+
+document.addEventListener("mouseup", (e) => {
+    if(!startElement || !tempLine) return;
+
+    const dropTarget = document.elementFromPoint(e.clientX, e.clientY);
+
+    if(dropTarget && dropTarget.classList.contains("fact")){
+        const isCorrect = startElement.dataset.planet === dropTarget.dataset.planet;
+        const rect = dropTarget.getBoundingClientRect();
+
+        tempLine.setAttribute("x2", rect.left);
+        tempLine.setAttribute("y2", rect.top + rect.height/2 + window.scrollY);
+        tempLine.setAttribute("stroke-dasharray", "none"); // Solid line once dropped
+
+        if(isCorrect){
+            tempLine.setAttribute("stroke", "#2ecc71");
+            dropTarget.classList.add("correct-box");
+            dropTarget.classList.remove("wrong-box");
+            linesMap[startElement.dataset.planet] = tempLine;
+        } else {
+            tempLine.setAttribute("stroke", "#e74c3c");
+            dropTarget.classList.add("wrong-box");
+            linesMap[startElement.dataset.planet] = tempLine;
+        }
+    } else {
+        tempLine.remove();
+    }
+
+    startElement = null;
+    tempLine = null;
+});
+
+function goBack(){
+    window.location.href = "Games.html";
+}
+
+function restartGame(){
+    Object.values(linesMap).forEach(line => line.remove());
+    linesMap = {};
+
+    document.querySelectorAll(".fact").forEach(f => {
+        f.classList.remove("correct-box", "wrong-box");
+    });
+
+    const factsContainer = document.getElementById("facts");
+    const facts = Array.from(factsContainer.children);
+    facts.sort(() => Math.random() - 0.5);
+    facts.forEach(f => factsContainer.appendChild(f));
+}
+</script>
+
+</body>
+</html>

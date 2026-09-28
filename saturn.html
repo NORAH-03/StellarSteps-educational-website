@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Saturn</title>
+
+<!-- GHADEER AL HAMOUD 441200016 -->
+
+<style>
+body{
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(to bottom, #0b0c2a, #050618);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Title */
+h1{
+    margin-top: 40px;
+    font-size: 40px;
+    color: #00d4ff;
+}
+
+/* Main container */
+.main{
+    text-align: center;
+    padding: 40px;
+}
+
+/* Planet image */
+.planet-cont{
+    margin: 30px 0;
+}
+
+img{
+    width: 340px;
+    border-radius: 0; /* REMOVE circle */
+    box-shadow: 0 0 30px rgba(0,212,255,0.4);
+    border: #050618 solid ;
+}
+
+/* Info box */
+.info{
+    padding: 25px;
+    border-radius: 15px;
+    width: 300px;
+    margin: auto;
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+p{
+    margin: 10px 0;
+    font-size: 15px;
+    color: #ccc;
+}
+
+/* Button */
+.btn{
+    margin-top: 30px;
+    padding: 12px 25px;
+    border-radius: 25px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    background: linear-gradient(45deg, #00d4ff, #4facfe);
+    color: black;
+    transition: 0.3s;
+}
+
+.btn:hover{
+    transform: scale(1.05);
+}
+</style>
+
+</head>
+
+<body>
+
+<h1>Saturn 💍</h1>
+
+<div class="main">
+
+    <!-- Planet Image -->
+    <div class="planet-cont">
+<img src="thumb-1920-1394989.webp" alt="Saturn">
+<!-- Info -->
+    <div class="info">
+        <p>🌞 Distance from Sun: 1.4 billion km</p>
+        <p>⏰ Day Length: 11 hours</p>
+        <p>🌡️ Average Temp: -178°C</p>
+        <p>💍 Famous for its beautiful rings!</p>
+    </div>
+
+    <!-- Button -->
+    <button class="btn" onclick="goBack()">Back to Solar System</button>
+
+</div>
+
+<script>
+function goBack() {
+    window.location.href = "Planets.html";;
+}
+</script>
+
+</body>
+</html>

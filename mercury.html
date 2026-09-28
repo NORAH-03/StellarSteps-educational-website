@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mercury</title>
+
+    <!-- Dalal Alotaibi 441200186 -->
+
+
+<style>
+body{
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(to bottom, #1a1a1a, #0b0c2a); /* Darker space theme */
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Title */
+h1{
+    margin-top: 40px;
+    font-size: 40px;
+    color: #ffcc33; /* Sun-kissed yellow for Mercury */
+}
+
+/* Main container */
+.main{
+    text-align: center;
+    padding: 40px;
+}
+
+/* Planet image */
+.planet-cont{
+    margin: 30px 0;
+}
+
+img{
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    box-shadow: 0 0 25px rgba(255, 204, 51, 0.3);
+    object-fit: cover;
+}
+
+/* Info box */
+.info{
+    padding: 25px;
+    border-radius: 15px;
+    width: 300px;
+    margin: auto;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+p{
+    margin: 10px 0;
+    font-size: 15px;
+    color: #ccc;
+}
+
+/* Button */
+.btn{
+    margin-top: 30px;
+    padding: 12px 25px;
+    border-radius: 25px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    background: linear-gradient(45deg, #ffcc33, #e67e22);
+    color: black;
+    transition: 0.3s;
+}
+
+.btn:hover{
+    transform: scale(1.05);
+}
+</style>
+
+</head>
+
+<body>
+
+<h1>Mercury ☿</h1>
+
+<div class="main">
+
+    <div class="planet-cont">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Mercury_in_true_color.jpg" alt="Mercury">
+    </div>
+
+    <div class="info">
+        <p>🌞 Distance from Sun: 58 million km</p>
+        <p>⏰ Day Length: 59 days</p>
+        <p>🌡️ Average Temp: 167°C</p>
+        <p>🔥 Closest planet to the Sun</p>
+    </div>
+
+    <button class="btn" onclick="goBack()">Back to Solar System</button>
+
+</div>
+
+<script>
+function goBack() {
+  window.location.href = "planets.html"; 
+}
+</script>
+
+</body>
+</html>

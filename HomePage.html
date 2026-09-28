@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <!-- Norah Ballash Alhajri 441200195 -->
+
+    <title>Stellar Steps</title>
+<style>
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', sans-serif;
+        background: linear-gradient(to bottom, #0b0c2a, #050618);
+        color: white;
+    }
+
+    /* Navbar */
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 18px 40px;
+        background: rgba(18, 20, 74, 0.8);
+        backdrop-filter: blur(10px);
+    }
+
+    .navbar h1 {
+        margin: 0;
+        color: #00d4ff;
+    }
+
+    .navbar a {
+        color: #ddd;
+        text-decoration: none;
+        margin-left: 35px;
+        transition: 0.3s;
+    }
+
+    .navbar a:hover {
+        color: #00d4ff;
+    }
+
+    /* welcome */
+    .welcome {
+        text-align: center;
+        padding: 20px 20px 60px;
+    }
+
+    .welcome h2 {
+        font-size: 50px;
+        margin-bottom: 15px;
+    }
+
+    .welcome p {
+        font-size: 20px;
+        color: #bbb;
+        max-width: 700px;
+        margin: auto;
+    }
+
+    /* Info Section Layout */
+    .info {
+        display: flex;
+        gap: 50px;
+        padding: 80px 10%;
+        align-items: center;
+    }
+
+    .info-text {
+        flex: 1;
+    }
+
+    .info-text h3 {
+        font-size: 30px;
+        margin-bottom: 20px;
+    }
+
+    .info-text p {
+        font-size: 17px;
+        line-height: 1.7;
+        color: #ccc;
+    }
+
+    /* Facts Grid */
+    .facts {
+        flex: 1;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .fact-box {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 18px;
+        border-radius: 15px;
+        backdrop-filter: blur(10px);
+        transition: 0.3s;
+        border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .fact-box:hover {
+        transform: translateY(-5px);
+        background: rgba(0, 212, 255, 0.1);
+    }
+
+    /* Button */
+    .btn-container {
+        text-align: center;
+        margin: 40px 0 80px;
+    }
+
+    .btn {
+        padding: 14px 35px;
+        background: linear-gradient(45deg, #00d4ff, #4facfe);
+        color: black;
+        text-decoration: none;
+        border-radius: 30px;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+
+    .btn:hover {
+        transform: scale(1.05);
+    }
+
+    /* Footer */
+    .footer {
+        text-align: center;
+        padding: 20px;
+        background: rgba(18, 20, 74, 0.8);
+        color: #aaa;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+        .info {
+            flex-direction: column;
+        }
+
+        .facts {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <h1>Stellar Steps</h1>
+        <div>
+            <a href="HomePage.html">Home</a>
+            <a href="Planets.html">Planets</a>
+            <a href="Games.html">Games</a>
+            <a href="AboutUsPage.html">About us</a>
+        </div>
+    </div>
+
+    <!-- Welcome Section -->
+    <div class="welcome">
+        <h2>Welcome to Stellar Steps 🚀</h2>
+        <p>Explore the wonders of the solar system through the fun and discovery!</p>
+    </div>
+
+    <!-- Info Section -->
+    <div class="info">
+    <!-- Left -->
+    <div class="info-text">
+        <h3>About Stellar Steps 🌌</h3>
+        <p>
+            Space is full of mystery, beauty, and endless discoveries. 
+            At Stellar Steps, we help kids explore the universe in a fun and simple way.
+            Through interactive facts, games, and quizzes, young explorers will learn 
+            about planets, stars, and galaxies while building curiosity and imagination.
+        </p>
+        <p>
+            Next, your adventure takes off! When you press the 'Start Your Journey' button, you'll enter a world of planets. By choosing a planet, you'll unlock a detailed page about it filled with facts and wonders. Then, you’ll put your knowledge to the test in matching games and explore the phases of the Moon. Get ready to discover and explore!
+        </p>
+    </div>
+
+    <!-- Right -->
+    <div class="facts">
+        <div class="fact-box">☀️ The Sun can fit over 1 million Earths!</div>
+        <div class="fact-box">🪐 Saturn has amazing rings made of ice.</div>
+        <div class="fact-box">🔴 Mars is known as the Red Planet.</div>
+        <div class="fact-box">🌍 Earth is the only planet with life.</div>
+        <div class="fact-box">🔥 Venus is the hottest planet.</div>
+        <div class="fact-box">❄️ Neptune is freezing and windy.</div>
+    </div>
+</div>
+
+<div class="btn-container">
+<a href="welcome.php" class="btn">
+    Start Your Journey 🚀
+</a>
+</div>
